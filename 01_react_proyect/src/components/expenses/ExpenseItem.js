@@ -1,8 +1,8 @@
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
-import Card from './Card';
+import Card from '../ui/Card';
 
-function ExpenseItem(props) {
+const ExpenseItem = (props) => {
   // It´s always better to have the logic outside the return.
   // It´s better to make another component
 
@@ -16,6 +16,6 @@ function ExpenseItem(props) {
       </div>
     </Card>
   );
-}
+};
 
 export default ExpenseItem;
