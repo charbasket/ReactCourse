@@ -26,7 +26,7 @@ function App() {
   // We pass the title, amount and date via props
   return (
     <div className="App">
-      <Expenses expenses={expenses} />
+      <Expenses items={expenses} />
     </div>
   );
 }
