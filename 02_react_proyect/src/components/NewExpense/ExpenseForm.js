@@ -22,8 +22,6 @@ const ExpenseForm = () => {
   // We use event.target.value to get the input from the user
   // We need to store this value for that we use state
   const titleChangeHandler = (event) => {
-    console.log('Title changed!');
-    console.log(event.target.value);
     setEnteredTitle(event.target.value);
 
     // If we only used one state:
@@ -50,13 +48,41 @@ const ExpenseForm = () => {
     // })
   };
 
+  // onSubmit by default sends a request and updates the page, but we don´t want that
+
+  const submitHandler = (event) => {
+    // We prevent the default of reloading the page
+    event.preventDefault();
+
+    // We store the data
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+    };
+
+    // We clear the inputs
+    // We use two way binding
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
+
+    console.log(expenseData);
+  };
+
   return (
-    <form>
+    // The onSubmit event is launched erverytime we click on the submit button
+    <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
-          {/* We need to get the input data, for that we use onChange */}
-          <input type='text' onChange={titleChangeHandler} />
+          <input
+            type='text'
+            // We need to use two way binding to restore the value once we submit
+            value={enteredTitle}
+            // We need to get the input data, for that we use onChange
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className='new-expense__control'>
           <label>Anount</label>
@@ -64,6 +90,7 @@ const ExpenseForm = () => {
             type='number'
             min='0.01'
             step='0.01'
+            value={enteredAmount}
             onChange={amountChangeHandler}
           />
         </div>
@@ -73,6 +100,7 @@ const ExpenseForm = () => {
             type='date'
             min='2019-01-01'
             max='2022-12-34'
+            value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
