@@ -24,7 +24,7 @@ const ExpenseItem = (props) => {
     // title = 'Updated!';
 
     // To change the title, we use the function and we pass the new value
-    setTitle('Hello!');
+    setTitle('Updated!');
     console.log(title);
   };
 

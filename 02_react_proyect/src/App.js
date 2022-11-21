@@ -1,4 +1,5 @@
 import Expenses from './components/expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
 
 const App = () => {
   const expenses = [
@@ -25,7 +26,8 @@ const App = () => {
 
   // We pass the title, amount and date via props
   return (
-    <div className="App">
+    <div className='App'>
+      <NewExpense />
       <Expenses items={expenses} />
     </div>
   );
