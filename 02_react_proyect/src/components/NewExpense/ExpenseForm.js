@@ -14,6 +14,8 @@ const ExpenseForm = () => {
   //  enteredAmount: "",
   //  enteredDate: ""
   // });
+  // IMPORTANT: whenever you update state and you depend on the previous state you should not use ...
+  // you should call the function a pass another function and then use ...prevState
 
   // Each time we press a key, titleChangeHandler is executed
   // The event object is created everytime we use an state (like onClick, onChange)
@@ -25,9 +27,8 @@ const ExpenseForm = () => {
     setEnteredTitle(event.target.value);
 
     // If we only used one state:
-    // setUserInput ({
-    //  ...userInput,
-    //  enteredTitle: event.target.value
+    // setUserInput ((prevState) => {
+    //  return {...prevState, enteredTitle: event.target.value}
     // })
   };
 
@@ -35,9 +36,8 @@ const ExpenseForm = () => {
     setEnteredAmount(event.target.value);
 
     // If we only used one state:
-    // setUserInput ({
-    //  ...userInput,
-    //  enteredAmount: event.target.value
+    // setUserInput ((prevState) => {
+    //  return {...prevState, enteredAmount: event.target.value}
     // })
   };
 
@@ -45,9 +45,8 @@ const ExpenseForm = () => {
     setEnteredDate(event.target.value);
 
     // If we only used one state:
-    // setUserInput ({
-    //  ...userInput,
-    //  enteredDate: event.target.value
+    // setUserInput ((prevState) => {
+    //  return {...prevState, enteredDate: event.target.value}
     // })
   };
 
