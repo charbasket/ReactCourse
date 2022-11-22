@@ -8,47 +8,17 @@ const ExpenseForm = (props) => {
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
 
-  // You can do all three states in one, but then you have to make sure that all three are passed
-  // const [userInput, setUserInput] = useState ({
-  //  enteredTitle:"",
-  //  enteredAmount: "",
-  //  enteredDate: ""
-  // });
-  // IMPORTANT: whenever you update state and you depend on the previous state you should not use ...
-  // you should call the function a pass another function and then use ...prevState
-
-  // Each time we press a key, titleChangeHandler is executed
-  // The event object is created everytime we use an state (like onClick, onChange)
-  // We use event.target.value to get the input from the user
-  // We need to store this value for that we use state
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value);
-
-    // If we only used one state:
-    // setUserInput ((prevState) => {
-    //  return {...prevState, enteredTitle: event.target.value}
-    // })
   };
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value);
-
-    // If we only used one state:
-    // setUserInput ((prevState) => {
-    //  return {...prevState, enteredAmount: event.target.value}
-    // })
   };
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
-
-    // If we only used one state:
-    // setUserInput ((prevState) => {
-    //  return {...prevState, enteredDate: event.target.value}
-    // })
   };
-
-  // onSubmit by default sends a request and updates the page, but we don´t want that
 
   const submitHandler = (event) => {
     // We prevent the default of reloading the page
@@ -67,12 +37,7 @@ const ExpenseForm = (props) => {
     setEnteredAmount('');
     setEnteredDate('');
 
-    // We created our own event on NewExpense (onSaveExpenseData).
-    // Because is a custom event we need to trigger it manually and we fetch it by props
-    // We pass the data we need to get upt to the parent ( expenseData -> enteredExpenseData )
     props.onSaveExpenseData(expenseData);
-
-    // console.log(expenseData);
   };
 
   return (
