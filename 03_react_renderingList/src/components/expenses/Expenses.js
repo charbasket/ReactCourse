@@ -11,6 +11,13 @@ const Expenses = (props) => {
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+
+  // We create a new array with the filtered results
+  // .filter() will return true or false depending if the condition is met
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
   return (
     <div>
       <Card className='expenses'>
@@ -21,10 +28,13 @@ const Expenses = (props) => {
         {/*
          *  We want to print one ExpenseItem for each expense we have
          *  We use .map() to transform each object of the array into a ExpenseItem
+         *  We use the prop KEY to assign an uniq value like an id to let react know each individual element
          */}
 
-        {props.items.map((expense) => (
+        {/* {props.items.map((expense) => ( */}
+        {filteredExpenses.map((expense) => (
           <ExpenseItem
+            key={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
