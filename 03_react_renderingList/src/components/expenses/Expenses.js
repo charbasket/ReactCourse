@@ -18,6 +18,21 @@ const Expenses = (props) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
+  // We can store JSX on variables like this
+  let expensesContent = <p>No expenses found.</p>;
+
+  // We want to filter the output of the component depending on the length of the array
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <div>
       <Card className='expenses'>
@@ -32,14 +47,36 @@ const Expenses = (props) => {
          */}
 
         {/* {props.items.map((expense) => ( */}
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {/* If there is no content we want to print a message */}
+
+        {expensesContent}
+
+        {/* We can use a? b:c  */}
+        {/* {filteredExpenses.length === 0 ? (
+          <p>No expenses found</p>
+        ) : (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))
+        )} */}
+
+        {/* We can use && to render the second condition if the first one is met instead of using a? b:c */}
+        {/* {filteredExpenses.length === 0 && <p>No expenses found</p>}
+        {filteredExpenses.length > 0 &&
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))} */}
+
         {/* <ExpenseItem
           title={props.items[0].title}
           amount={props.items[0].amount}
