@@ -5,6 +5,7 @@ import Card from '../ui/Card';
 
 import './Expenses.css';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesList from './ExpensesList';
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState('2020');
@@ -19,19 +20,21 @@ const Expenses = (props) => {
   });
 
   // We can store JSX on variables like this
-  let expensesContent = <p>No expenses found.</p>;
+  // We put this on another component for clariry => ExpensesList.js
+  // let expensesContent = <p>No expenses found.</p>;
 
   // We want to filter the output of the component depending on the length of the array
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => (
-      <ExpenseItem
-        key={expense.id}
-        title={expense.title}
-        amount={expense.amount}
-        date={expense.date}
-      />
-    ));
-  }
+  // We put this on another component for clariry => ExpensesList.js
+  // if (filteredExpenses.length > 0) {
+  //   expensesContent = filteredExpenses.map((expense) => (
+  //     <ExpenseItem
+  //       key={expense.id}
+  //       title={expense.title}
+  //       amount={expense.amount}
+  //       date={expense.date}
+  //     />
+  //   ));
+  // }
 
   return (
     <div>
@@ -40,6 +43,8 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
+        <ExpensesList items={filteredExpenses} />
+
         {/*
          *  We want to print one ExpenseItem for each expense we have
          *  We use .map() to transform each object of the array into a ExpenseItem
@@ -49,7 +54,8 @@ const Expenses = (props) => {
         {/* {props.items.map((expense) => ( */}
         {/* If there is no content we want to print a message */}
 
-        {expensesContent}
+        {/* We use this if we use the if to output */}
+        {/* {expensesContent} */}
 
         {/* We can use a? b:c  */}
         {/* {filteredExpenses.length === 0 ? (
