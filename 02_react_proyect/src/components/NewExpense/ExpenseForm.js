@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // We can use useState multiple times an they are independent
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
@@ -67,7 +67,12 @@ const ExpenseForm = () => {
     setEnteredAmount('');
     setEnteredDate('');
 
-    console.log(expenseData);
+    // We created our own event on NewExpense (onSaveExpenseData).
+    // Because is a custom event we need to trigger it manually and we fetch it by props
+    // We pass the data we need to get upt to the parent ( expenseData -> enteredExpenseData )
+    props.onSaveExpenseData(expenseData);
+
+    // console.log(expenseData);
   };
 
   return (
